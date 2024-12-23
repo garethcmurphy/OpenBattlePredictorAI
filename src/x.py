@@ -22,6 +22,7 @@ data = {
     "Outcome": ["Victory", "Defeat", "Stalemate"]
 }
 df = pd.DataFrame(data)
+df.to_csv("battles.csv", index=False)
 
 # Step 2: Preprocess Data
 label_encoder = LabelEncoder()
