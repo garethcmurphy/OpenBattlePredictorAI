@@ -1,0 +1,26 @@
+{
+    "python.analysis.extraPaths": [
+        "./src",
+        "/Users/garethmurphy/Library/Caches/pypoetry/virtualenvs/supervised-learning-lRCOGAw2-py3.13/lib/python3.13/site-packages"
+    ],
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#e9f836",
+        "activityBar.background": "#e9f836",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#06abb9",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "commandCenter.border": "#15202b99",
+        "sash.hoverBorder": "#e9f836",
+        "statusBar.background": "#e0f308",
+        "statusBar.foreground": "#15202b",
+        "statusBarItem.hoverBackground": "#b2c206",
+        "statusBarItem.remoteBackground": "#e0f308",
+        "statusBarItem.remoteForeground": "#15202b",
+        "titleBar.activeBackground": "#e0f308",
+        "titleBar.activeForeground": "#15202b",
+        "titleBar.inactiveBackground": "#e0f30899",
+        "titleBar.inactiveForeground": "#15202b99"
+    },
+    "peacock.color": "#e0f308"
+}
