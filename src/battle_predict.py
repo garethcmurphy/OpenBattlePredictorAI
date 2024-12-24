@@ -1,54 +1,66 @@
 #!/usr/bin/env python3
 """
-machine learning to win napoleon's battles
+Machine learning to win Napoleon's battles
 """
+
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.metrics import accuracy_score, classification_report
 
-# Step 1: Create Sample Dataset
-data = {
-    "Battle Name": ["Austerlitz", "Waterloo", "Borodino"],
-    "Date": ["1805-12-02", "1815-06-18", "1812-09-07"],
-    "Commander": ["Napoleon", "Napoleon", "Napoleon"],
-    "Troop Strength": [67000, 73000, 130000],
-    "Opponent Commander": ["Tsar Alexander I", "Duke of Wellington", "Mikhail Kutuzov"],
-    "Opponent Strength": [85000, 113000, 120000],
-    "Terrain": ["Hills, Lakes", "Flat Plains", "Flat, River Nearby"],
-    "Weather": ["Foggy", "Rainy", "Clear"],
-    "Strategy Used": ["Flanking, Divide and Conquer", "Direct Assault", "Artillery, Attrition"],
-    "Outcome": ["Victory", "Defeat", "Stalemate"]
-}
-df = pd.DataFrame(data)
-df.to_csv("battles.csv", index=False)
+class NapoleonicBattlePredictor:
+    """
+    Machine learning to win Napoleon's battles
+    """
+    def __init__(self):
+        self.model = RandomForestClassifier()
+        self.scaler = StandardScaler()
+        self.label_encoder = LabelEncoder()
+        self.data = None
+        self.X = None
+        self.y = None
 
-# Step 2: Preprocess Data
-label_encoder = LabelEncoder()
-df['Outcome'] = label_encoder.fit_transform(df['Outcome'])  # Encode outcome
-df['Terrain'] = label_encoder.fit_transform(df['Terrain'])  # Encode terrain
-df['Weather'] = label_encoder.fit_transform(df['Weather'])  # Encode weather
+    def load_data(self):
+        data = {
+            "Battle Name": ["Austerlitz", "Waterloo", "Borodino"],
+            "Date": ["1805-12-02", "1815-06-18", "1812-09-07"],
+            "Commander": ["Napoleon", "Napoleon", "Napoleon"],
+            "Troop Strength": [67000, 73000, 130000],
+            "Opponent Commander": ["Tsar Alexander I", "Duke of Wellington", "Mikhail Kutuzov"],
+            "Opponent Strength": [85000, 113000, 120000],
+            "Terrain": ["Hills, Lakes", "Flat Plains", "Flat, River Nearby"],
+            "Weather": ["Foggy", "Rainy", "Clear"],
+            "Strategy Used": ["Flanking, Divide and Conquer", "Direct Assault", "Artillery, Attrition",],
+            "Outcome": ["Victory", "Defeat", "Stalemate"]
+        }
+        self.data = pd.DataFrame(data)
+        self.data.to_csv("battles.csv", index=False)
 
-# Add a derived feature
-df['Troop Ratio'] = df['Troop Strength'] / df['Opponent Strength']
+    def preprocess_data(self):
+        self.data['Outcome'] = self.label_encoder.fit_transform(self.data['Outcome'])  # Encode outcome
+        self.data['Terrain'] = self.label_encoder.fit_transform(self.data['Terrain'])  # Encode terrain
+        self.data['Weather'] = self.label_encoder.fit_transform(self.data['Weather'])  # Encode weather
 
-# Select Features and Labels
-X = df[['Troop Strength', 'Opponent Strength', 'Terrain', 'Weather', 'Troop Ratio']]
-y = df['Outcome']
+        # Add a derived feature
+        self.data['Troop Ratio'] = self.data['Troop Strength'] / self.data['Opponent Strength']
 
-# Scale the data
-scaler = StandardScaler()
-X = scaler.fit_transform(X)
+        # Select Features and Labels
+        self.X = self.data[['Troop Strength', 'Opponent Strength', 'Terrain', 'Weather', 'Troop Ratio']]
+        self.y = self.data['Outcome']
 
-# Step 3: Train-Test Split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        # Scale the data
+        self.X = self.scaler.fit_transform(self.X)
 
-# Step 4: Train Model
-model = RandomForestClassifier()
-model.fit(X_train, y_train)
+    def train_model(self):
+        X_train, X_test, y_train, y_test = train_test_split(self.X, self.y, test_size=0.2, random_state=42)
+        self.model.fit(X_train, y_train)
+        y_pred = self.model.predict(X_test)
+        print("Accuracy:", accuracy_score(y_test, y_pred))
+        print("Classification Report:\n", classification_report(y_test, y_pred))
 
-# Step 5: Evaluate Model
-y_pred = model.predict(X_test)
-print("Accuracy:", accuracy_score(y_test, y_pred))
-print("Classification Report:\n", classification_report(y_test, y_pred))
+if __name__ == "__main__":
+    predictor = NapoleonicBattlePredictor()
+    predictor.load_data()
+    predictor.preprocess_data()
+    predictor.train_model()
