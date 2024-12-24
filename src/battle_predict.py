@@ -24,6 +24,7 @@ class NapoleonicBattlePredictor:
         self.y = None
 
     def load_data(self):
+        """load data"""
         data = {
             "Battle Name": ["Austerlitz", "Waterloo", "Borodino"],
             "Date": ["1805-12-02", "1815-06-18", "1812-09-07"],
@@ -48,6 +49,7 @@ class NapoleonicBattlePredictor:
         self.data.to_csv("battles.csv", index=False)
 
     def preprocess_data(self):
+        """preprocess data"""
         self.data["Outcome"] = self.label_encoder.fit_transform(
             self.data["Outcome"]
         )  # Encode outcome
@@ -73,6 +75,7 @@ class NapoleonicBattlePredictor:
         self.X = self.scaler.fit_transform(self.X)
 
     def train_model(self):
+        """train model"""
         X_train, X_test, y_train, y_test = train_test_split(
             self.X, self.y, test_size=0.2, random_state=42
         )

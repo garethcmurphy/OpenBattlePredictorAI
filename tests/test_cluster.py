@@ -1,9 +1,15 @@
-import unittest
-import pandas as pd
+#!/usr/bin/env python3
+"""test_cluster.py - unit tests for the BattleClustering class"""
 import os
+import unittest
+
+import pandas as pd
+
 from battle_clustering import BattleClustering
 
+
 class TestBattleClustering(unittest.TestCase):
+    """Unit tests for the BattleClustering class"""
     @classmethod
     def setUpClass(cls):
         # Create a sample dataset for testing
@@ -32,17 +38,20 @@ class TestBattleClustering(unittest.TestCase):
         self.clustering = BattleClustering(data_path=self.sample_data_path)
 
     def test_load_data(self):
+        """Test the load_data method"""
         self.clustering.load_data()
         self.assertIsNotNone(self.clustering.data)
         self.assertEqual(len(self.clustering.data), 3)
 
     def test_preprocess_data(self):
+        """Test the preprocess_data method"""
         self.clustering.load_data()
         self.clustering.preprocess_data()
         self.assertIsNotNone(self.clustering.X_scaled)
         self.assertEqual(self.clustering.X_scaled.shape[0], 3)
 
     def test_perform_clustering(self):
+        """Test the perform_clustering method"""
         self.clustering.load_data()
         self.clustering.preprocess_data()
         self.clustering.perform_clustering()
@@ -50,6 +59,8 @@ class TestBattleClustering(unittest.TestCase):
         self.assertEqual(len(self.clustering.clusters), 3)
 
     def test_save_results(self):
+        """Test the save_results method
+        """
         self.clustering.load_data()
         self.clustering.preprocess_data()
         self.clustering.perform_clustering()

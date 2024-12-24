@@ -6,7 +6,9 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 
+
 class BattleClustering:
+    """Clustering battles using K-Means"""
     def __init__(self, data_path, n_clusters=3, random_state=42):
         self.data_path = data_path
         self.n_clusters = n_clusters
@@ -24,8 +26,15 @@ class BattleClustering:
     def preprocess_data(self):
         """Preprocess data by encoding categorical columns and scaling features"""
         categorical_columns = ["Terrain", "Weather", "Key_Factors"]
-        self.data_encoded = pd.get_dummies(self.data, columns=categorical_columns, drop_first=True)
-        X = self.data_encoded.drop(columns=["Outcome", "Battle_Name"])  # Drop the target and non-feature columns
+        self.data_encoded = pd.get_dummies(
+            self.data, columns=categorical_columns, drop_first=True
+        )
+        X = self.data_encoded.drop(
+            columns=[
+                "Outcome",
+                "Battle_Name",
+            ]
+        )  # Drop the target and non-feature columns
         scaler = StandardScaler()
         self.X_scaled = scaler.fit_transform(X)
 
@@ -40,11 +49,14 @@ class BattleClustering:
 
     def visualize_clusters(self, output_path):
         """Visualize the clusters (if dataset is 2D or reduced to 2D)"""
-        plt.scatter(self.X_scaled[:, 0], self.X_scaled[:, 1], c=self.clusters, cmap="viridis")
+        plt.scatter(
+            self.X_scaled[:, 0], self.X_scaled[:, 1], c=self.clusters, cmap="viridis"
+        )
         plt.title("Battle Clusters")
         plt.xlabel("Feature 1")
         plt.ylabel("Feature 2")
         plt.savefig(output_path)
+
 
 if __name__ == "__main__":
     clustering = BattleClustering(data_path="data/napoleon_battles.csv")
