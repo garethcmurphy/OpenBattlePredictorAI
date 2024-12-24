@@ -4,6 +4,8 @@ This project applies supervised learning techniques to predict the outcomes of N
 
 ## Project Structure
 
+![](results/clusters_visualization.png)
+
 ## Installation
 
 1. **Clone the repository:**
