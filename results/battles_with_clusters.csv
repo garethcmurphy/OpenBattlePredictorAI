@@ -1,0 +1,12 @@
+Battle_Name,Year,Troop_Size_French,Troop_Size_Enemy,Terrain,Weather,Outcome,Key_Factors,Cluster
+Battle of Toulon,1793,15000,20000,Urban,Mild,Win,"Artillery strategy, naval forces",2
+Battle of Rivoli,1797,23000,28000,Hills,Cold,Win,"Superior tactics, use of terrain",2
+Battle of the Pyramids,1798,25000,40000,Desert,Hot,Win,"Square infantry formations, cavalry dominance",2
+Battle of Marengo,1800,28000,31000,Plains,Warm,Win,"Surprise counterattack, reinforcements",2
+Battle of Austerlitz,1805,68000,85000,Plains and hills,Foggy,Win,"Divide-and-conquer strategy, tactical feints",0
+Battle of Trafalgar,1805,0,0,Naval,Windy,Lose,British superior naval tactics,2
+Battle of Jena-Auerstedt,1806,120000,114000,Plains and forests,Mild,Win,"Speed of movement, division of enemy forces",2
+Battle of Friedland,1807,80000,60000,Riverbanks and forests,Warm,Win,"River as barrier, concentrated attacks",1
+Battle of Borodino,1812,130000,120000,Fortified plains,Warm,Draw,"Heavy casualties, strong Russian defenses",1
+Battle of Leipzig,1813,200000,350000,Urban and riverbanks,Cold,Lose,"Superior coalition numbers, multi-front attacks",1
+Battle of Waterloo,1815,73000,120000,Plains,Rainy,Lose,"Delayed attack due to rain, Prussian reinforcements",1
