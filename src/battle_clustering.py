@@ -45,7 +45,6 @@ class BattleClustering:
         plt.xlabel("Feature 1")
         plt.ylabel("Feature 2")
         plt.savefig(output_path)
-        plt.show()
 
 if __name__ == "__main__":
     clustering = BattleClustering(data_path="data/napoleon_battles.csv")
