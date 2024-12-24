@@ -1,6 +1,7 @@
+#!/usr/bin/env python3
+"""clustering battles"""
 
 import pandas as pd
-import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
